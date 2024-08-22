@@ -61,5 +61,5 @@ app.post(route, (req, res) => {
 
 const PORT = 3001;
 app.listen(PORT, () => {
-  console.log(`app starts at port${PORT} have fun!`);
+  console.log(`app starts at port ${PORT} have fun!`);
 });
