@@ -8,10 +8,15 @@ app.get(route, (_, res) => {
   res.json(persons);
 });
 
+// step 3
 app.get(`${route}:id`, (req, res) => {
   const id = req.params.id;
   const person = persons.find((person) => person.id == id);
-  res.json(person);
+  if (person) {
+    res.json(person);
+  } else {
+    res.status(404).end();
+  }
 });
 
 // step 2
