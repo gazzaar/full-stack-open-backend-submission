@@ -1,7 +1,7 @@
 const express = require('express');
 let persons = require('./persons');
 const app = express();
-
+app.use(express.json());
 const route = '/api/persons/';
 
 app.get(route, (_, res) => {
@@ -33,6 +33,18 @@ app.delete(`${route}:id`, (req, res) => {
   const id = req.params.id;
   persons.filter((person) => person.id !== id);
   res.status(204).end();
+});
+
+// step 5
+app.post(route, (req, res) => {
+  const body = req.body;
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: Math.floor(Math.random() * 10000),
+  };
+  persons = [...persons, person];
+  res.json(person);
 });
 
 const PORT = 3001;
