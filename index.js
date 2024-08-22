@@ -1,7 +1,10 @@
 const express = require('express');
+const morgan = require('morgan');
 let persons = require('./persons');
 const app = express();
+app.use(morgan('tiny'));
 app.use(express.json());
+
 const route = '/api/persons/';
 
 app.get(route, (_, res) => {
