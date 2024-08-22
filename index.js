@@ -38,6 +38,18 @@ app.delete(`${route}:id`, (req, res) => {
 // step 5
 app.post(route, (req, res) => {
   const body = req.body;
+
+  if (!body.name || !body.number) {
+    return res.status(400).json({
+      error: 'missing person name and number',
+    });
+  }
+  const duplicateName = persons.some((person) => person.name === body.name);
+  if (duplicateName) {
+    return res.status(400).json({
+      error: 'person already exists',
+    });
+  }
   const person = {
     name: body.name,
     number: body.number,
