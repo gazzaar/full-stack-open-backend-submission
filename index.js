@@ -28,6 +28,13 @@ app.get('/api/info', (_, res) => {
   );
 });
 
+// step 4
+app.delete(`${route}:id`, (req, res) => {
+  const id = req.params.id;
+  persons.filter((person) => person.id !== id);
+  res.status(204).end();
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`app starts at port${PORT} have fun!`);
