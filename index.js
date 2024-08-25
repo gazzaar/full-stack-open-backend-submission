@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
-
+app.use(express.static('dist'));
 const route = '/api/persons/';
 
 app.get(route, (_, res) => {
