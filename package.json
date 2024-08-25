@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build:ui": "rm -rf dist && cd ~/web/fullstackopen/submissions/part2/phonebook && npm run build && cp -r dist ~/web/fullstackopen/backendSubmissions"
   },
   "author": "Gazzaar",
   "license": "ISC",
