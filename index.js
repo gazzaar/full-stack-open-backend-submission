@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 let persons = require('./persons');
 const app = express();
+app.use(cors());
 app.use(morgan('tiny'));
 app.use(express.json());
 
