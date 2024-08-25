@@ -36,14 +36,20 @@ app.get('/api/info', (_, res) => {
 // step 4
 app.delete(`${route}:id`, (req, res) => {
   const id = req.params.id;
-  persons.filter((person) => person.id !== id);
-  res.status(204).end();
+  const person = persons.find((person) => person.id === id);
+
+  if (!person) {
+    return res.status(404).json({ error: 'Person not found' });
+  }
+
+  persons = persons.filter((person) => person.id !== id);
+
+  res.status(200).json(person);
 });
 
 // step 5
 app.post(route, (req, res) => {
   const body = req.body;
-
   if (!body.name || !body.number) {
     return res.status(400).json({
       error: 'missing person name and number',
@@ -58,7 +64,7 @@ app.post(route, (req, res) => {
   const person = {
     name: body.name,
     number: body.number,
-    id: Math.floor(Math.random() * 10000),
+    id: String(Math.floor(Math.random() * 10000)),
   };
   persons = [...persons, person];
   res.json(person);
